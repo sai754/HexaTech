@@ -29,7 +29,7 @@ x = 10
 y = x+10
 ```
 
-### Shortcuts
+### Shortcut
 
 - `Alt + (up/down)` - Move Line up or down
 
