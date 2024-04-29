@@ -1,3 +1,5 @@
+use HexaTechSQL;
+
 CREATE TABLE salesman (
     salesman_id INT PRIMARY KEY,
     name VARCHAR(255),
@@ -34,6 +36,9 @@ from salesman inner join
 (select city, max(commission) as maxcom 
 from salesman where city is not null  group by city) 
 as commtable on salesman.city = commtable.city and salesman.commission = commtable.maxcom ; 
+
+select * from salesman o where commission in (select max(commission) as maxcommission from salesman i
+where o.city = i.city);
 
 CREATE TABLE orders (
     ord_no INT PRIMARY KEY,
@@ -78,6 +83,8 @@ select * from orders inner join
 (select customer_id, avg(purch_amt) as avgg from orders i group by customer_id) 
 as avgtable on orders.customer_id = avgtable.customer_id where orders.purch_amt > avgtable.avgg; 
 
+
+--Correlated Subqueries
 select * from orders o 
 where purch_amt > (select avg(purch_amt)
 					from orders i where o.customer_id = i.customer_id) ;
@@ -230,9 +237,230 @@ select EmployeeID, round(Salary * 1.03,2) as NewSalary from EmployeeData;
 -- Top 3 Purc_Amt
 use HexaTechSQL;
 
-SELECT * FROM orders ORDER BY purch_amt  OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY;  
+SELECT * FROM orders ORDER BY purch_amt  OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY; 
+
+--Modify the above statement in a way it asks the user for the number of rows to be selected
+
+declare @r int = 3;
+SELECT * FROM orders ORDER BY purch_amt  OFFSET 0 ROWS FETCH NEXT @r ROWS ONLY; 
 
 --Task 2
 --Format Date - 25 Apr 2012
 
 select FORMAT(ord_date,'D','en-gb') as Date_Format from orders;
+
+--Set Operations (Union/Intersect/Except)
+
+--Intersect - Common Items in lists
+--Except - UnCommon items
+
+create database SetOperations;
+use SetOperations;
+
+ 
+ 
+CREATE TABLE Employees (
+    EmployeeID INT,
+    Name VARCHAR(50),
+    Department VARCHAR(50)
+);
+ 
+INSERT INTO Employees (EmployeeID, Name, Department) VALUES
+(1, 'Alice', 'Engineering'),
+(2, 'Bob', 'Marketing'),
+(3, 'Charlie', 'Engineering'),
+(4, 'Dana', 'HR');
+ 
+ 
+CREATE TABLE Applicants (
+    ApplicantID INT,
+    Name VARCHAR(50),
+    AppliedFor VARCHAR(50)
+);
+ 
+INSERT INTO Applicants (ApplicantID, Name, AppliedFor) VALUES
+(5, 'George', 'Engineering'),
+(6, 'Helen', 'Marketing'),
+(7, 'Ian', 'Marketing'),
+(3, 'Charlie', 'Sales');
+
+--Intersect Example 
+Select Department from Employees
+intersect
+Select AppliedFor from Applicants;
+
+--Union Example
+Select Department from Employees
+union
+Select AppliedFor from Applicants;
+
+--Except Example
+--Everything from Table A except from the things that are available in Table B (A-B)
+Select Department from Employees
+except
+Select AppliedFor from Applicants;
+
+--Order matters in Except
+Select AppliedFor from Applicants
+except
+Select Department from Employees;
+
+
+
+CREATE TABLE Products (
+    ProductID INT,
+    ProductName VARCHAR(50),
+    Category VARCHAR(50),
+    InStock CHAR(3)
+);
+ 
+INSERT INTO Products (ProductID, ProductName, Category, InStock) VALUES
+(1, 'Laptop', 'Electronics', 'Yes'),
+(2, 'Smartphone', 'Electronics', 'No'),
+(3, 'Coffee Maker', 'Appliances', 'Yes'),
+(4, 'Blender', 'Appliances', 'Yes'),
+(5, 'T-shirt', 'Apparel', 'No');
+
+CREATE TABLE Orders (
+    OrderID INT,
+    ProductID INT,
+    CustomerName VARCHAR(50),
+    Quantity INT
+);
+ 
+INSERT INTO Orders (OrderID, ProductID, CustomerName, Quantity) VALUES
+(100, 1, 'Alice', 1),
+(101, 3, 'Bob', 2),
+(102, 2, 'Charlie', 1),
+(103, 4, 'Dana', 1),
+(104, 3, 'Alice', 1);
+
+select * from Products;
+select * from orders;
+
+--Task 1 
+--List all distinct products that are either in stock or have been ordered
+
+
+Select ProductName from Products where ProductID in 
+(select ProductID from Products union select ProductID from orders) or InStock='Yes';
+
+--Task 2
+--Identify products that are both in stock and ordered
+
+Select ProductName from Products where ProductID in 
+(select ProductID from Products intersect select ProductID from orders) and InStock='Yes';
+
+--Task 3
+--Find products that are in stock but have never been ordered
+
+select * from orders;
+select * from Products;
+
+Select ProductName from Products where ProductID not in 
+(select ProductID from Products union select ProductID from orders) and InStock='Yes';
+
+create database GroupbyPrac;
+use GroupbyPrac;
+
+CREATE TABLE EmployeeSales (
+    EmployeeID INT,
+    Region VARCHAR(50),
+    Category VARCHAR(50),
+    Quarter VARCHAR(10),
+    SalesAmount DECIMAL(10,2)
+);
+ 
+INSERT INTO EmployeeSales (EmployeeID, Region, Category, Quarter, SalesAmount)
+VALUES
+    (101, 'North', 'Electronics', 'Q1', 1200.00),
+    (101, 'North', 'Electronics', 'Q2', 1500.00),
+    (102, 'North', 'Clothing', 'Q1', 800.00),
+    (102, 'North', 'Clothing', 'Q2', 950.00),
+    (103, 'South', 'Electronics', 'Q1', 1000.00),
+    (103, 'South', 'Clothing', 'Q1', 1200.00),
+    (104, 'East', 'Electronics', 'Q2', 1150.00),
+    (104, 'East', 'Clothing', 'Q2', 500.00),
+    (105, 'West', 'Electronics', 'Q1', 1900.00),
+    (105, 'West', 'Clothing', 'Q1', 1100.00),
+    (105, 'West', 'Electronics', 'Q2', 2100.00),
+    (105, 'West', 'Clothing', 'Q2', 1300.00);
+
+select * from EmployeeSales;
+
+-- Compound Sort
+select * from EmployeeSales order by Region, SalesAmount desc;
+
+select * from EmployeeSales order by Category, SalesAmount desc;
+
+--Year to Date sale
+
+select Region, Category, Sum(SalesAmount) as YearToDate 
+from EmployeeSales group by Region, Category;
+
+select Category, Sum(SalesAmount) as YearToDate 
+from EmployeeSales group by Category;
+
+select Region, Sum(SalesAmount) as YearToDate 
+from EmployeeSales group by Region;
+
+select Region, Quarter, Sum(SalesAmount) as YearToDate 
+from EmployeeSales group by Region, Quarter;
+
+--Grouping sets
+
+select Region, Category,[Quarter], Sum(SalesAmount) as YearToDate 
+from EmployeeSales group by grouping sets(
+	(Region, Category),
+	(Region, [Quarter]),
+	Region,
+	[Quarter]
+	)
+order by grouping(Region), Grouping(Category), grouping([Quarter]);
+
+-- Exists and Not Exists in Sub query
+
+create database SubExist;
+use SubExist;
+
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    department VARCHAR(50)
+);
+ 
+CREATE TABLE projects (
+    project_id INT PRIMARY KEY,
+    project_name VARCHAR(100),
+    employee_id INT,
+    start_date DATE,
+    FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
+);
+ 
+ 
+INSERT INTO employees (employee_id, name, department) VALUES
+(1, 'Alice', 'Engineering'),
+(2, 'Bob', 'Engineering'),
+(3, 'Charlie', 'HR'),
+(4, 'David', 'Marketing');
+ 
+INSERT INTO projects (project_id, project_name, employee_id, start_date) VALUES
+(101, 'Alpha', 1, '2021-01-10'),
+(102, 'Beta', 2, '2021-03-15'),
+(103, 'Gamma', 1, '2021-02-20');
+
+select * from employees;
+select * from projects;
+
+--Exists returns boolean value
+
+select * from employees o where department = 'Engineering' and 
+exists (select * from projects i where o.employee_id = i.employee_id);
+
+INSERT INTO employees (employee_id, name, department) VALUES
+(5, 'ABC', 'Engineering');
+
+--Not exists
+
+select * from employees o where department = 'Engineering' and 
+not exists (select * from projects i where o.employee_id = i.employee_id);
