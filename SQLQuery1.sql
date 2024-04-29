@@ -215,3 +215,24 @@ select upper(substring(LastName,1,3)) as LastNameUpper from EmployeeData;
 
 --Task 4
 --Write a query to calculate the tenure of each employee in complete years as of today.
+
+select * from EmployeeData;
+
+select EmployeeID, DATEDIFF(year, StartDate, GetDate()) as Tenure from EmployeeData;
+
+--Task 5
+--Assume a yearly salary increase of 3% for each employee. 
+--Write a query to calculate their new salary rounded to the nearest whole number.
+
+select EmployeeID, round(Salary * 1.03,2) as NewSalary from EmployeeData;
+
+--Task 1
+-- Top 3 Purc_Amt
+use HexaTechSQL;
+
+SELECT * FROM orders ORDER BY purch_amt  OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY;  
+
+--Task 2
+--Format Date - 25 Apr 2012
+
+select FORMAT(ord_date,'D','en-gb') as Date_Format from orders;
