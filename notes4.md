@@ -8,7 +8,7 @@
 
 - Without a specified grouping, each aggregate function is going to run on the whole set of result rows and return a single value. And like normal expressions, giving your aggregate functions an alias ensures that the results will be easier to read and process.
 
-!["Aggregate Functions"](./aggregatefuns.png)
+!["Aggregate Functions"](./pics/aggregatefuns.png)
 
 ### Grouped Aggregate Functions
 
@@ -184,11 +184,11 @@
 
 ### Data types
 
-![](./datatypes.png)
+![](./pics/datatypes.png)
 
 ### Constraints
 
-![](./Constraints.png)
+![](./pics/Constraints.png)
 
 1. Create a new table named Database with the following columns:
    – Name A string (text) describing the name of the database

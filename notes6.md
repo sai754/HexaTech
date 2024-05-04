@@ -32,7 +32,7 @@
 - Intersect - Gives common items between list
 - Except - Everything from Table A except the things that are available commonly in table B (A-B)
 
-!["SetTheory"](./SetTheory.png);
+!["SetTheory"](./pics/SetTheory.png);
 
 ```sql
     --Intersect Example
@@ -59,9 +59,9 @@
 
 ## Keys
 
-!["Keys"](./keys.png)
+!["Keys"](./pics/keys.png)
 
-!["Keys2"](./keys2.png)
+!["Keys2"](./pics/keys2.png)
 
 - Composition Key
 
@@ -118,4 +118,4 @@
 
 - It produces a result set which is the product of rows of two associate tables when no WHERE clause is used with cross Join
 
-!["Cross"](./CrossJoin.png)
+!["Cross"](./pics/CrossJoin.png)

@@ -35,7 +35,7 @@ Cloud - Renting PC
 
 AWS has the autoscaling capability
 
-!["Auto Scaling"](autoscaling.png)
+!["Auto Scaling"](./pics/autoscaling.png)
 
 Based on the usage and the active customers, more computational power will be added automatically
 
@@ -43,7 +43,7 @@ Auto Scaling can be a disadvantage when there is DDOS attack and there is a auto
 
 The attack can come from the opponents or hackers
 
-!["DDOS"](./DDOS.png)
+!["DDOS"](./pics/DDOS.png)
 
 ## Why Database ?
 
@@ -121,7 +121,7 @@ Find all the information about each film:
 
 - Where Clause used to add conditions
 
-!["Condition Operators"](./Operators.png)
+!["Condition Operators"](./pics/Operators.png)
 
 Find the movie with a row id of 6:
 
@@ -149,7 +149,7 @@ Find the first 5 Pixar movies and their release year:
 
 ## Exercise 3 - Queries with constraints
 
-!["String Constraints"](./strings.png)
+!["String Constraints"](./pics/strings.png)
 
 Find all the Toy Story movies:
 
@@ -187,7 +187,7 @@ Find all the WALL- movies:
 
 - ORDER BY clause is specified, each row is sorted alpha-numerically based on the specified column's value.
 
-![](./ORderBy.png)
+![](./pics/ORderBy.png)
 
 - Another clause which is commonly used with the ORDER BY clause are the LIMIT and OFFSET clauses, which are a useful optimization to indicate to the database the subset of the results you care about.
 
@@ -327,7 +327,7 @@ Find all the WALL- movies:
 
 ## Joins
 
-!["joins"](./joins.png)
+!["joins"](./pics/joins.png)
 
 ## Exercise - 7 Outer Joins
 

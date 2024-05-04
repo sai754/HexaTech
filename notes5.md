@@ -14,7 +14,7 @@
 - Math Functions
 - Date Functions
 
-![](./StringFunctions.png)
+![](./pics/StringFunctions.png)
 
 - LOWER
 - UPPER
@@ -50,11 +50,11 @@
 
 ## Math Functions
 
-!["Mathematical functions"](./Math.png)
+!["Mathematical functions"](./pics/Math.png)
 
 ## Date Functions
 
-!["Date Functions"](./DateFuncs.png)
+!["Date Functions"](./pics/DateFuncs.png)
 
 - DATE
 - MONTH

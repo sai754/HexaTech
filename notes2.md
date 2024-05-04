@@ -50,7 +50,7 @@ y = x+10
 
 People who are responsible of the Product
 
-!["Stakeholders and Lifecycle"](./image.png)
+!["Stakeholders and Lifecycle"](./pics/image.png)
 
 ## Agile
 
@@ -65,7 +65,7 @@ Can gain Customer Feedback after each release and improve the product
 
 ### Implementation of Agile (Scrum)
 
-!["Scrum"](./scrum.png)
+!["Scrum"](./pics/scrum.png)
 
 Scrum Master - Assigns the tasks
 
