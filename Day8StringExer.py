@@ -1,3 +1,4 @@
+# Task 1
 # After the 🔑
 # message = "    🚨🔍📱🔑secret_code✌️"
 # code = "SECRET_CODE✌️"
@@ -13,3 +14,4 @@ if (output == code):
   print("You are a hacker")
 else:
   print("Try Again")
+
