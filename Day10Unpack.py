@@ -49,3 +49,37 @@ print(d)
 
 d1 = [round((x**2+y**2)**0.5,2) for x,y in coordinates]
 print(d1)
+
+# If u want only the last element in t3
+t1,t2,*_,t3 = [100,200,300,400,60,40]
+
+print(t1,t2,t3)
+
+
+# 3rd way to copy lists
+# Using unpacking operator
+# 1st - using Copy() method
+# 2nd - using slicing operator [:]
+marks1 = [70,80,60]
+marks2 = [*marks1,40,50]
+print(marks2)
+
+# Task
+
+t1 = [80,90]
+t2 = [50,60]
+t3 = [*t1,*t2]
+print(t3)
+
+# unpacking operator for dictionary -> **
+
+movie = { 'name': 'John Wick', 'year':2014 }
+m1 = {**movie, "actor":"Keanu Reeves"}
+m2 = {**movie, "actor":"Keanu Reeves", 'year':2015}
+# Dictionary only have unique keys
+# So if the key is repeated it will be overwritten
+m3 = {"actor":"Keanu Reeves", 'year':2015, **movie}
+print(movie)
+print(m1)
+print(m2)
+print(m3)
