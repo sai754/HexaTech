@@ -13,7 +13,7 @@ print(person[0])
 # Count, index
 print(person.count(20))
 print(person.index("India"))
-
+print(len(person))
 # Index will give error if there is no such element
 # Find will return -1 if no such element is present
 
