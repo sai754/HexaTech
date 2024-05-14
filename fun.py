@@ -6,11 +6,16 @@
 # print(cool.to_upper_case("Sai"))
 
 from useful.cool import to_upper_case
-
-print(to_upper_case("Sai"))
-
-# inbuilt package
 from math import sqrt as square 
-# alias with the as syntax if you want
 
-print(square(25))
+def main():
+    print(to_upper_case("Sai"))
+
+    # inbuilt package
+
+    # alias with the as syntax if you want
+
+    print(square(25))
+
+if __name__ == '__main__':
+    main()
