@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "email": "johndoe@example.com",
+        "isActive": true,
+        "balance": 165.825
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "janesmith@example.com",
+        "isActive": false,
+        "balance": 500.5
+    },
+    {
+        "id": 3,
+        "name": "Emily Jones",
+        "email": "emilyjones@example.com",
+        "isActive": true,
+        "balance": 0.0
+    }
+]
