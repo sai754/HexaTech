@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Animal {
+        constructor(name) {
+          this.name = name;
+        }
+        speak() {
+          return 'Some Sound';
+        }
+      }
+      class Dog extends Animal {
+        constructor(name, speed) {
+          super(name);
+          this.speed = speed;
+        }
+
+        run() {
+          return 'Runs....';
+        }
+
+        speak() {
+          return 'Barks....';
+        }
+
+        speedBonus() {
+          return `${this.name} is running at ${this.speed * 2} kmhr`;
+        }
+      }
+
+      Maxy = new Dog('Maxy', '10');
+      console.log(Maxy.speak());
+      console.log(Maxy.run());
+      console.log(Maxy.speedBonus());
+      //         # Inheritance
+      // class Animal:
+      //     def __init__(self, name):
+      //         self._name = name
+
+      //     # methods / attributes
+      //     def speak(self):
+      //         return "Some sound"
+
+      // class Dog(Animal):
+      //     def __init__(self, name, speed):
+      //         super().__init__(name)  # Base class constructor
+      //         self.__speed = speed
+
+      //     def run(self):
+      //         return "🐶 wags tail!!"
+
+      //     # Polymorphism:  Method overriding
+      //     def speak(self):
+      //         return "Woof!! 🐕"
+
+      //     def speed_bonus(self):
+      //         return f"{self._name} is running at {self.__speed * 2}Km/hr"
+
+      // toby = Animal("toby")
+      // print(toby.speak())
+      // # print(toby.run())
+
+      // maxy = Dog("maxy", 20)
+      // # print(maxy._name)
+      // print(maxy.run())
+      // print(maxy.speak())
+      // # print(maxy.__speed)
+      // print(maxy.speed_bonus())
+    </script>
+  </body>
+</html>

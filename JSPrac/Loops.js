@@ -33,7 +33,7 @@ console.log('Hello');
 
 // console.log(Object.keys(avenger));
 // console.log(Object.values(avenger));
-
+// for of will not work with object, for in will work with both object and array
 const avenger = {
   name: 'Tony Stark',
   house: '🏘️',

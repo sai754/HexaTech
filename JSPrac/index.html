@@ -81,12 +81,13 @@
       function CheckAge(){
         age = document.getElementById("AgeInput").value;
         result = document.getElementById("AgeResult");
-        if (age < 18) {
-            result.innerText = "You are not Eligible"
-        }else{
-            result.innerText = "You are Eligible"
-        }
+        result.innerText = age < 18 ? "You are Not Eligible" : "You are eligible"
       }
+       // if (age < 18) {
+        //     result.innerText = "You are not Eligible"
+        // }else{
+        //     result.innerText = "You are Eligible"
+        // }
     </script>
   </body>
 </html>

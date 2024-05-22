@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Fun Page</h1>
+    <button onclick="clicked()">Click me</button>
+    <button onclick="getPrompt()">Click</button>
+    <script>
+      function clicked() {
+        alert('This is cool');
+      }
+
+      let sum = (a, b) => a + b;
+      console.log(sum(4, 4));
+
+      getPrompt = () => {
+        let name = prompt('Enter name');
+        console.log(name);
+      };
+
+      class Car {
+        constructor(name, engine, wheels, doors) {
+          this.name = name;
+          this.engine = engine;
+          this.wheels = wheels;
+          this.doors = doors;
+        }
+
+        horn() {
+          return `${this.name} says Vroom Vroom!!!`;
+        }
+      }
+
+      ferrari = new Car('Ferrari', 'v8', 4, 2); // object (instance)
+      alto = new Car('Alto', 'v4', 4, 4); // object
+      console.log(ferrari);
+      console.log(alto);
+      console.log(typeof Car, typeof ferrari, typeof alto);
+      // Prototype Inheritance
+
+      class Item {
+        constructor(name, quantity) {
+          this.name = name;
+          this.quantity = quantity;
+          this.constructor.count++;
+        }
+        static count = 0;
+        static getCount() {
+          return Item.count;
+        }
+      }
+      let pen = new Item('Pen', 5);
+      let notebook = new Item('notebook', 10);
+      console.log(Item.getCount()); // 2
+    </script>
+  </body>
+</html>
